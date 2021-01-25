@@ -2,5 +2,14 @@ spring:
   profiles:
     active: dev
 
+
 server:
   port: 15792
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+

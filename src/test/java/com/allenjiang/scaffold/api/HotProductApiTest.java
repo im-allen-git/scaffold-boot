@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -23,7 +24,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SingleProductApiTest {
+public class HotProductApiTest {
 
 
     private MockMvc mockMvc;
@@ -38,21 +39,16 @@ public class SingleProductApiTest {
 
 
     @Test
-    public void genFileWithPidListTest() throws Exception {
-        //String pidList = "558402887332,561626515417,624783027827,609248064715,601747073381,601819130073,601938620834,580516030929,575080000902,554317452640,563584255508,567118535896";
-        //String bcFlag = "8";
-
-        String pidList = "566232642484,41571699899,594965701772,575083012125,571346214678,589593949131,576250953887,558473214921,529785789979,584816508308,556815741781,37925711067";
-        String bcFlag = "0";
+    public void refreshJsonTest() throws Exception {
+        String hotClassId = "1";
         String webSite = String.valueOf(WebSiteEnum.IMPORTX.getCode());
-        mockMvc.perform(MockMvcRequestBuilders
-                .get("/singleProduct/genFileWithPidList")
-                .param("pidList", pidList)
-                .param("bcFlag", bcFlag)
-                .param("webSite", webSite))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                //.andExpect(MockMvcResultMatchers.content().string("Hello Tom!"))
-                .andDo(MockMvcResultHandlers.print());
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/hotProduct/refreshJson").param("hotClassId", hotClassId).param("webSite", webSite)).andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
+
+        String rs = mvcResult.getResponse().getContentAsString();
+
+        System.err.println(rs);
+        //.andExpect(MockMvcResultMatchers.content().string("Hello Tom!"))
+        //.andDo(MockMvcResultHandlers.print());
     }
 
 }

@@ -1,0 +1,58 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.1.29:3306/front_crossshop?useUnicode=true&allowMultiQueries=true&useSSL=false&serverTimezone=GMT
+    username: test
+    password: root@123
+
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 100000
+      test-on-borrow: true
+
+
+#静态文件的根目录
+web-path:
+  importx: E:/tomcatlist/apache-tomcat-8-import/webapps/importexpress
+  kids: E:/tomcatlist/apache-tomcat-8-import/webapps/importexpress
+  pets: E:/tomcatlist/apache-tomcat-8-import/webapps/importexpress
+
+#热卖区静态化文件路径
+hot:
+  path:
+    importx: ${web-path.importx}/newindex/js/lib/
+    kids: ${web-path.kids}/newindex/js/lib/
+    pets: ${web-path.kids}/newindex/js/lib/
+  #刷新接口
+  refresh:
+    url: /popProducts/getHotJson?hotClassId=
+
+#热卖区静态化文件路径
+single-product:
+  path:
+    importx: ${web-path.importx}/productinfo/
+    importx-m: ${web-path.importx}/productinfo-m/
+    kids: ${web-path.kids}/productinfo/
+    kids-m: ${web-path.kids}/productinfo-m/
+    pets: ${web-path.pets}/productinfo/
+    pets-m: ${web-path.pets}/productinfo-m/
+
+#搜索页静态化文件路径
+search-product:
+  path:
+    importx: ${web-path.importx}/search/
+    kids: ${web-path.kids}/search/
+    pets: ${web-path.pets}/search/
+
+
+#关键词静态化文件路径
+keyword-html:
+  path:
+    importx: ${web-path.importx}/hotwords/
+    kids: ${web-path.kids}/hotwords/
+    pets: ${web-path.pets}/hotwords/
+
+
+
